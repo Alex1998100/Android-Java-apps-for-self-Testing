@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "yyyyyyyyyyyy",
+    "firebase_url": "https://xxxxxxxxxxxx-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "xxxxxxxxxxxx",
+    "storage_bucket": "xxxxxxxxxxxx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+        "android_client_info": {
+          "package_name": "com.vbnet.jstest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

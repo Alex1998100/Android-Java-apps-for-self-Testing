@@ -1,0 +1,4 @@
+// https://babeljs.io/docs/learn#default--rest--spread
+// Pass each elem of array as argument
+
+6

@@ -1,0 +1,6 @@
+// https://babeljs.io/docs/learn#default--rest--spread
+// Turn an array into consecutive arguments in a function call. Bind trailing parameters to an array. 
+// Rest replaces the need for arguments and addresses common cases more directly.
+// y is an Array
+
+6
