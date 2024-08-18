@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,13 +23,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.vbnet.jstest.MainActivity;
 import com.vbnet.jstest.databinding.FragmentNotesBinding;
 
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Executor;
 
 public class NotesFragment extends Fragment {
 
@@ -37,6 +40,7 @@ public class NotesFragment extends Fragment {
     private FirebaseAuth mAuth;
     private static final String TAG = "AnonymousAuth";
     String answerFile;
+    EditText editText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class NotesFragment extends Fragment {
 
         final TextView textView = binding.title;
         textView.setText(answerFile);
+        editText = binding.notes;
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference("notes");
         mAuth = FirebaseAuth.getInstance();
@@ -70,7 +76,7 @@ public class NotesFragment extends Fragment {
         final String body = binding.notes.getText().toString();
         // Body is required
         if (TextUtils.isEmpty(body)) {
-            binding.title.setError(REQUIRED);
+            binding.notes.setError(REQUIRED);
             return;
         }
         // Disable button so there are no multi-posts
@@ -95,21 +101,23 @@ public class NotesFragment extends Fragment {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.exists()) {
                     String key = mDatabase.push().getKey();
                     Map<String, Object> newNotes = new HashMap<>();
                     newNotes.put( key, new Object() {
                         public final String Q = title;
                         public final String T = body;
+                        public final String D = String.valueOf(ZonedDateTime.now());
                     });
                     Task<Void> voidTask = mDatabase.updateChildren(newNotes);
                     setEditingEnabled(true);
+                    editText.getText().clear();
                 }
             }
 
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+                //Toast.makeText(getContext(), databaseError.getCode(), Toast.LENGTH_SHORT).show();
                 setEditingEnabled(true);
             };
         });

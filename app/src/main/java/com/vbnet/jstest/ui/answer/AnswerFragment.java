@@ -54,7 +54,7 @@ public class AnswerFragment extends Fragment {
         } catch(IOException ioe){
             ioe.printStackTrace();
         }
-        return  sb.toString();
+        return  sb.toString().replace("\nnull\n", "\n");
     }
 
 
