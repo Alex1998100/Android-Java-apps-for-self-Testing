@@ -1,3 +1,5 @@
+This is first preview, how this application can look like, more advanced application see please https://github.com/Alex1998100/Android-Java-apps-for-self-Testing1
+
 I built this Android apps for himself. For testing himself for various features of Angular-Typescript-Javascript
 
 ![JsTest](https://github.com/user-attachments/assets/ce4af0b5-17a8-4ac2-abf5-0bd41513c16d)
